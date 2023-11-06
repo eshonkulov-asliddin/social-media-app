@@ -2,6 +2,7 @@ package com.example.socialmediaapp.entities;
 
 import jakarta.persistence.*;
 
+@Table(name = "LIKES")
 @Entity
 public class Like {
     @Id
