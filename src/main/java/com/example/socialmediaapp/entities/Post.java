@@ -20,6 +20,22 @@ public class Post {
     @OneToMany(mappedBy="post")
     private Set<Like> likes;
 
+    public Post() {
+    }
+
+    public Post(Long id, String title, String body, User author) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.author = author;
+    }
+
+    public Post(String title, String body, User author) {
+        this.title = title;
+        this.body = body;
+        this.author = author;
+    }
+
     public Long getId() {
         return id;
     }

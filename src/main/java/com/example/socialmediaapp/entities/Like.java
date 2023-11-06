@@ -17,6 +17,17 @@ public class Like {
     @JoinColumn(name="post_id", nullable=false)
     private Post post;
 
+    public Like(Long id, User user, Post post) {
+        this.id = id;
+        this.user = user;
+        this.post = post;
+    }
+
+    public Like(User user, Post post) {
+        this.user = user;
+        this.post = post;
+    }
+
     public Long getId() {
         return id;
     }

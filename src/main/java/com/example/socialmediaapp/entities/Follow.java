@@ -16,6 +16,17 @@ public class Follow {
     @JoinColumn(name="follower_id", nullable=false)
     private User follower;
 
+    public Follow(Long id, User user, User follower) {
+        this.id = id;
+        this.user = user;
+        this.follower = follower;
+    }
+
+    public Follow(User user, User follower) {
+        this.user = user;
+        this.follower = follower;
+    }
+
     public Long getId() {
         return id;
     }

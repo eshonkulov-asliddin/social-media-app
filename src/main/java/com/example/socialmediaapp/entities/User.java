@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
+@Table(name = "USERS")
 @Entity
 public class User {
     @Id
@@ -22,6 +23,21 @@ public class User {
 
     @OneToMany(mappedBy="follower")
     private Set<Follow> followedBy;
+
+    public User(){}
+
+    public User(Long id, String username, String password, String email) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;
