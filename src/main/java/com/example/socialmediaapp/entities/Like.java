@@ -28,6 +28,10 @@ public class Like {
         this.post = post;
     }
 
+    public Like() {
+
+    }
+
     public Long getId() {
         return id;
     }
