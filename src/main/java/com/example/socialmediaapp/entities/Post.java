@@ -1,6 +1,7 @@
 package com.example.socialmediaapp.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Set;
 
@@ -9,8 +10,9 @@ public class Post {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-
+    @NotBlank
     private String title;
+    @NotBlank
     private String body;
 
     @ManyToOne
