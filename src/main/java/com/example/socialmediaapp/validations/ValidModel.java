@@ -3,8 +3,10 @@ package com.example.socialmediaapp.validations;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.Payload;
-import java.lang.annotation.*;
+import org.springframework.stereotype.Component;
 
+import java.lang.annotation.*;
+@Component
 @Constraint(validatedBy = {})
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
