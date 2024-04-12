@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'jacoco'
+    id "org.sonarqube" version "4.2.1.3168"
     id 'org.springframework.boot' version '3.1.5'
     id 'io.spring.dependency-management' version '1.1.3'
 }
@@ -15,11 +17,41 @@ repositories {
     mavenCentral()
 }
 
+sonarqube {
+    properties {
+        property "sonar.host.url", System.getenv('SONAR_HOST_URL')
+        property "sonar.login", System.getenv('SONARQUBE_LOGIN')
+        property "sonar.password", System.getenv('SONARQUBE_PASSWORD')
+        property "sonar.projectKey", "social-media-app"
+        property "sonar.projectName", "social-media-app"
+        property "sonar.projectVersion", "1.0"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.sources", "src/main/java"
+        property "sonar.tests", "src/test/java"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
+    }
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    // https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
+    implementation 'org.hibernate.validator:hibernate-validator'
+
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport {
+    reports{
+        xml.required = true
+    }
+    dependsOn test // tests are required to run before generating the report
 }
 
 tasks.named('test') {
